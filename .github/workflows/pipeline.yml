@@ -50,8 +50,10 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           script: |
-            # Actualizar la imagen en el manifiesto dinámicamente
-            sed -i 's|image:.*|image: ${{ secrets.DOCKER_USER }}/devops-app:${{ github.sha }}|g' /home/ubuntu/app/k8s/deployment.yaml
-            sudo kubectl apply -f /home/ubuntu/app/k8s/deployment.yaml
-            sudo kubectl apply -f /home/ubuntu/app/k8s/service.yaml
-            sudo kubectl apply -f /home/ubuntu/app/k8s/hpa.yaml
+            # Ajustar la imagen en el manifiesto dentro de la ruta correcta
+            sed -i 's|image:.*|image: ${{ secrets.DOCKER_USER }}/devops-app:${{ github.sha }}|g' /home/ubuntu/app/k8s/k8s/deployment.yaml
+            
+            # Aplicar manifiestos
+            sudo kubectl apply -f /home/ubuntu/app/k8s/k8s/deployment.yaml
+            sudo kubectl apply -f /home/ubuntu/app/k8s/k8s/service.yaml
+            sudo kubectl apply -f /home/ubuntu/app/k8s/k8s/hpa.yaml
