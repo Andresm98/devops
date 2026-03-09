@@ -36,22 +36,18 @@ resource "aws_security_group" "tcs_sg" {
 }
 
 resource "aws_instance" "devops_server" {
-  ami           = "ami-06e3c045d79fd65d9" # Ubuntu 22.04 LTS (x86_64)
-  instance_type = "t3.micro"
-  key_name      = "devops-key"  #
+  ami           = "ami-0b0b78dcacbab728f" #
+  instance_type = "c7i-flex.large"        #
+  key_name      = "devops-key"
   vpc_security_group_ids = [aws_security_group.tcs_sg.id]
 
   user_data = <<-EOF
               #!/bin/bash
-              # Instalación de K3s optimizada para t3.micro
-              curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik --disable servicelb" sh -
-              # Esperar a que k3s arranque
-              sleep 30
-              # Ajustar permisos para el usuario ubuntu
-              sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+              # Instalación más limpia, omitiendo componentes pesados
+              curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik --disable servicelb --kubelet-arg='eviction-hard=memory.available<500Mi'" sh -
               EOF
 
-  tags = { Name = "TCS-Reto-DevOps" }
+  tags = { Name = "TCS-Reto-DevOps-Pro" }
 }
 
 output "instance_public_ip" {
