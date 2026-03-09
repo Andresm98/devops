@@ -40,8 +40,8 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
-          source: "k8s/"
-          target: "/home/ubuntu/app/"
+          source: "k8s/k8s/"
+          target: "/home/ubuntu/app/k8s/"
 
       - name: Deploy to K8s
         uses: appleboy/ssh-action@master

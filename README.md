@@ -25,7 +25,7 @@ Content-Type: application/json
 Utiliza el siguiente comando para validar el endpoint recién desplegado:
 
 ```bash
-curl -v -X POST "[http://3.129.69.255:31234/DevOps](http://3.129.69.255:31234/DevOps)" \
+curl -v -X POST "[http://18.118.2.213:31234/DevOps](http://18.118.2.213:31234/DevOps)" \
   -H "X-Parse-REST-API-Key: 2f5ae96c-b558-4c7b-a590-a501ae1c3f6c" \
   -H "X-JWT-KWY: token-unico-123" \
   -H "Content-Type: application/json" \

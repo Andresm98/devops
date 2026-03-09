@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: microservice
-          image: tu-usuario/devops-app:latest
+          image: andy17u7/devops-app:latest
           ports:
             - containerPort: 8080
           resources:
