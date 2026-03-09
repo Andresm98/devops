@@ -38,7 +38,7 @@ resource "aws_security_group" "tcs_sg" {
 resource "aws_instance" "devops_server" {
   ami           = "ami-0b0b78dcacbab728f" #
   instance_type = "c7i-flex.large"        #
-  key_name      = "devops-key"
+  key_name      = "devopsr2-key"
   vpc_security_group_ids = [aws_security_group.tcs_sg.id]
 
   user_data = <<-EOF
