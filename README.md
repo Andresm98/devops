@@ -10,7 +10,7 @@ El despliegue está automatizado mediante CI/CD (GitHub Actions). El pipeline in
 
 ### El microservicio se encuentra desplegado y expuesto a través de un NodePort en el clúster de Kubernetes.
 
-Endpoint: [http://18.**218**.34.62:**31234**/DevOps](http://18.**218**.34.62:**31234**/DevOps)
+Endpoint: [http://18.118.2.213/DevOps](http://18.**218**.34.62:**31234**/DevOps)
 
 Método: **POST**
 
