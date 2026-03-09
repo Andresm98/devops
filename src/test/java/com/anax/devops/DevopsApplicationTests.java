@@ -8,6 +8,7 @@ class DevopsApplicationTests {
 
     @Test
     void contextLoads() {
+        DevopsApplication.main(new String[] {});
     }
 
 }
