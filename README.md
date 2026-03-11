@@ -1,33 +1,41 @@
-# DevOps Microservice Project
+# 🚀 DevOps Microservice Project
 
-## Estado del Proyecto
-El despliegue está automatizado mediante CI/CD (GitHub Actions). El pipeline incluye validación de tests unitarios (JaCoCo con >80% de cobertura).
+##  📝 Estado del Proyecto
+El despliegue está totalmente automatizado mediante un pipeline de **CI/CD (GitHub Actions)**, garantizando despliegues consistentes y fiables.
 
-## Arquitectura
-- **App:** Spring Boot 3.5.11
-- **Orquestación:** K3s en AWS EC2
-- **Escalado:** Horizontal Pod Autoscaler (HPA) configurado.
+* **Calidad de Código:** Integración de **JaCoCo** para métricas de cobertura.
+* **Requisito de Calidad:** Se exige una cobertura mínima de pruebas unitarias superior al **80%**.
 
-### El microservicio se encuentra desplegado y expuesto a través de un NodePort en el clúster de Kubernetes.
+---
 
-Endpoint: [http://18.118.2.213/DevOps](http://18.**218**.34.62:**31234**/DevOps)
+## 🏗️ Arquitectura Técnica
+El sistema está diseñado para ser escalable y eficiente en entornos de producción:
 
-Método: **POST**
+* **Framework:** Spring Boot 3.5.11 + Hexagonal Architecture.
+* **Orquestación:** K3s corriendo sobre AWS EC2.
+* **Escalado:** Implementación de **Horizontal Pod Autoscaler (HPA)** para ajustar la capacidad según la demanda.
 
-Cabeceras Requeridas:
+---
 
-X-Parse-**REST**-**API**-Key: 2f5ae96c-b558-4c7b-a590-a501ae1c3f6c
+##  📡 API Documentation
 
-X-**JWT**-**KWY**: token-unico-**123**
+El microservicio expone un endpoint para la gestión de mensajes bajo autenticación estricta.
 
-Content-Type: application/json
+### Endpoint de Prueba
+`POST http://18.118.2.213:31234/DevOps`
 
-Utiliza el siguiente comando para validar el endpoint recién desplegado:
+#### Cabeceras Requeridas
+| Cabecera | Valor |
+| :--- | :--- |
+| `X-Parse-REST-API-Key` | `2f5ae96c-b558-4c7b-a590-a501ae1c3f6c` |
+| `X-JWT-KWY` | `token-unico-123` |
+| `Content-Type` | `application/json` |
 
+#### Ejemplo de Petición (cURL)
 ```bash
-curl -v -X POST "[http://18.118.2.213:31234/DevOps](http://18.118.2.213:31234/DevOps)" \
+curl -v -X POST "http://18.118.2.213:31234/DevOps" \
   -H "X-Parse-REST-API-Key: 2f5ae96c-b558-4c7b-a590-a501ae1c3f6c" \
-  -H "X-JWT-KWY: token-unico-123" \
+  -H "X-JWT-KWY: token-unico-3216667" \
   -H "Content-Type: application/json" \
   -d '{ 
         "message" : "Hello World", 
@@ -36,11 +44,13 @@ curl -v -X POST "[http://18.118.2.213:31234/DevOps](http://18.118.2.213:31234/De
         "timeToLifeSec" : 45 
       }'
 ```
+## 🧪 Instrucciones de Prueba
 
-## Instrucciones de Prueba
 El servicio expone un endpoint `/DevOps` que requiere autenticación mediante headers:
-- `X-Parse-REST-API-Key`
-- `X-JWT-KWY`
 
-## Nota Técnica
-Debido a las restricciones de hardware (1GB RAM en t3.micro), el clúster opera cerca de su capacidad máxima. La configuración de los manifiestos (`deployment.yaml`, `hpa.yaml`) cumple con las mejores prácticas de Kubernetes.
+-   `X-Parse-REST-API-Key`
+-   `X-JWT-KWY`
+
+# ⚠️ NOTA IMPORTANTE
+
+Para optimizar la entrega del proyecto, se actualizó **solamente** el archivo `README.md` con la información relevante sobre el despliegue, arquitectura y detalles de la API. El código fuente del microservicio no ha sido modificado para mantener la integridad del proyecto original.
